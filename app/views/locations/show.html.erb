@@ -1,19 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Location -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Location %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:name) %></dt>
+      <dd><pre class="prettyprint"><%= @location.name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:locatable_id) %></dt>
+      <dd><pre class="prettyprint"><%= @location.locatable_id %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:locatable_type) %></dt>
+      <dd><pre class="prettyprint"><%= @location.locatable_type %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Locatable:</strong>
-  <%= @location.locatable_id %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              locations_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_location_path(@location), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              location_path(@location),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Locatable type:</strong>
-  <%= @location.locatable_type %>
-</p>
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
